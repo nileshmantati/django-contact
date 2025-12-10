@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Register{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center">
+    <div class="register-card">
+        <h3 class="text-center mb-4">Create Account</h3>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="name" id="name" placeholder="Full Name" required>
+                <label for="name">Full Name</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
+                    required>
+                <label for="email">Email Address</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone" required>
+                <label for="phone">Phone Number</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                    required>
+                <label for="password">Password</label>
+            </div>
+
+            <div class="form-floating mb-4">
+                <input type="password" class="form-control" id="confirmPassword" name="confirmpassword"
+                    placeholder="Confirm Password" required>
+                <label for="confirmPassword">Confirm Password</label>
+            </div>
+
+            <button type="submit" class="btn w-100 btn-custom mb-3">Register</button>
+
+            <p class="text-center text-light">
+                Already have an account?
+                <a href="{% url 'login' %}" class="text-white login_btn">Login</a>
+            </p>
+
+        </form>
+    </div>
+</div>
+{% endblock %}

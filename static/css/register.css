@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.register-card {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 35px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    animation: slideUp 0.7s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.register-card h3 {
+    color: white;
+    font-weight: 600;
+}
+
+.form-floating label {
+    color: #e5e7eb;
+}
+
+.form-control {
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.form-control:focus {
+    background: rgba(255, 255, 255, 0.3);
+    color: #fff;
+    box-shadow: none;
+    border-color: #fff;
+}
+
+.btn-custom {
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.btn-custom:hover {
+    background: #dae2ff;
+}
+
+.link-light a {
+    color: #fff;
+    font-weight: 500;
+}
+
+.link-light a:hover {
+    text-decoration: underline;
+}
+
+.login_btn:hover {
+    color: blue !important;
+}
+
+/* Spacing between toasts */
+.toast+.toast {
+    margin-top: 12px;
+}

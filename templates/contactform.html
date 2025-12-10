@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div>
+        <div class="container p-5">
+            <div class="row justify-content-center">
+                <div class="col-md-7 col-lg-6">
+                    <div class="contact-card">
+                        <h2 class="contact-title">{{title|default:"Add Contact"}}</h2>
+
+                        <form method="post" enctype="multipart/form-data"
+                            action="{% if data.id %}{% url 'home' data.id %}{% else %}{% url 'home' %}{% endif %}">
+                            {% csrf_token %}
+
+                            <div class="input-group-custom mb-3">
+                                <input type="text" name="name" class="form-control" value="{{data.name}}"
+                                    placeholder=" " required>
+                                <label class="form-label">Full Name</label>
+                            </div>
+
+                            <div class="input-group-custom mb-3">
+                                <input type="email" name="email" class="form-control" value="{{data.email}}"
+                                    placeholder=" " required>
+                                <label class="form-label">Email Address</label>
+                            </div>
+
+                            <div class="input-group-custom mb-3">
+                                <input type="tel" name="phone" class="form-control" value="{{data.phone}}"
+                                    placeholder=" " required>
+                                <label class="form-label">Phone Number</label>
+                            </div>
+
+                            <div class="input-group-custom mb-3">
+                                <textarea name="address" class="form-control" rows="4" placeholder=" "
+                                    required>{{data.address}}</textarea>
+                                <label class="form-label">Address</label>
+                            </div>
+                            <div class="input-group-custom mb-3">
+                                <label class="ms-2 mb-1">Upload image</label>
+                                <input type="file" name="image" class="form-control pt-1" {% if not data.image %}
+                                    required {% endif %}>
+                            </div>
+                            <!-- <div class="input-group-custom mb-3">
+                        <select class="form-select" name="subject" required>
+                            <option disabled selected>Select Subject</option>
+                            <option>Support</option>
+                            <option>Feedback</option>
+                            <option>Business Inquiry</option>
+                            <option>Other</option>
+                        </select>
+                        <label class="form-label">Subject</label>
+                    </div> -->
+
+
+                            <button class="btn btn-custom w-100" type="submit">{{btn|default:"Send Message"}}</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

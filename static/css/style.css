@@ -1,0 +1,247 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Navbar Section  */
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 0;
+    bottom: -4px;
+    background-color: #f8f9fa;
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Contact Form  */
+.contact-card {
+    width: 100%;
+    border-radius: 25px;
+    padding: 40px;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    background: transparent;
+    background-size: 300% 300%;
+    animation: bgAnimation 400ms infinite alternate;
+    animation: zoomInForm 0.6s ease-out forwards;
+}
+
+@keyframes zoomInForm {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes bgAnimation {
+    0% {
+        background-position: left top;
+    }
+
+    100% {
+        background-position: right bottom;
+    }
+}
+
+.contact-title {
+    font-size: 34px;
+    font-weight: 900;
+    text-align: center;
+    color: black;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.contact-title::after {
+    content: "";
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #ff6b6b, #ffd93d, #6a5af9);
+    display: block;
+    margin: 10px auto 25px;
+    border-radius: 10px;
+    animation: lineGlow 2s infinite alternate;
+}
+
+@keyframes lineGlow {
+    from {
+        opacity: 0.6;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.input-group-custom {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group-custom .form-label {
+    position: absolute;
+    left: 16px;
+    top: 14px;
+    font-size: 16px;
+    color: black;
+    pointer-events: none;
+    transition: 0.25s ease;
+    padding: 0 5px;
+    background: transparent;
+}
+
+.input-group-custom input,
+.input-group-custom select,
+.input-group-custom textarea {
+    padding-top: 15px;
+}
+
+.input-group-custom input:focus+.form-label,
+.input-group-custom input:not(:placeholder-shown)+.form-label {
+    top: -10px;
+    left: 12px;
+    font-size: 12px;
+    color: #6a5af9;
+    background: white;
+}
+
+/* SELECT — floating label */
+.input-group-custom select:focus+.form-label,
+.input-group-custom select:not([value=""])+.form-label {
+    top: -10px;
+    left: 12px;
+    font-size: 12px;
+    color: #6a5af9;
+    background: white;
+}
+
+/* TEXTAREA */
+.input-group-custom textarea:focus+.form-label,
+.input-group-custom textarea:not(:placeholder-shown)+.form-label {
+    top: -10px;
+    left: 12px;
+    font-size: 12px;
+    color: #6a5af9;
+    background: white;
+}
+
+/* contact form save , registration ,login btn */
+.btn-custom {
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(45deg, #6a5af9, #ff6b6b, #ffd93d);
+    background-size: 300%;
+    color: #ffffff !important;
+    font-weight: 700;
+    padding: 14px;
+    transition: all 0.4s ease-in-out;
+}
+
+.btn-custom:hover {
+    background-position: right;
+    transform: translateY(-3px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.35),
+        0px 0px 12px rgba(255, 255, 255, 0.6);
+    color: black !important;
+}
+
+.btn-custom:active {
+    transform: scale(0.97);
+}
+
+.card-img-top {
+    object-fit: cover !important;
+    height: 170px;
+}
+
+/* Logout btn  */
+.btn-logout {
+    transition: all 0.3s;
+}
+
+.btn-logout:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Contact Status btn  */
+
+/* .status_checkbox:checked {
+    accent-color: red;
+}
+.status_checkbox:checked {
+    accent-color: green;
+} */
+.toggle-switch {
+    position: relative;
+    width: 38px;
+    height: 20px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e74c3c;
+    transition: .3s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #2ecc71;
+}
+
+input:checked+.slider:before {
+    transform: translateX(17px);
+}
+
+/* Footer */
+footer {
+    background: #000;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    margin-top: 40px;
+}

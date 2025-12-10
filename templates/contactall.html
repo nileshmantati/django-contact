@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact From{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container p-3 my-3">
+    <h2 class="fw-medium mb-4">Contact Details</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        {% for contact in alldata %}
+        <div class="col">
+            <div class="card h-100 shadow-sm p-3 pb-0">
+                <img src="{{ contact.image.url }}" class="card-img-top rounded-2" alt="Image">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-title text-capitalize fw-bold">{{ contact.name }}</h5>
+                        <span>
+                            <form action="{% url 'update_status' contact.id %}" method="post">
+                                {% csrf_token %}
+                                <label class="toggle-switch">
+                                    <input type="checkbox" onchange="this.form.submit()" 
+                                    {% if contact.status %}checked{% endif %}>
+                                    <span class="slider"></span>
+                                </label>
+                            </form>
+                            <!-- <form action="{% url 'update_status' contact.id%}" method="post">
+                                        {% csrf_token %}
+                                        <input type="checkbox" class="status_checkbox" onchange="this.form.submit()" {% if contact.status %} checked {% endif %}>
+                                    </form>-->
+                        </span>
+                    </div>
+                    <p class="card-text mb-1" style="font-size: .9rem;">{{ contact.email }}</p>
+                    <p class="card-text mb-2" style="font-size: .9rem;">{{ contact.phone }}</p>
+                    <p class="mb-0" style="font-size: .9rem;">{{contact.address}}</p>
+                    <p class="text-muted small mb-2">
+                        Status:
+                        {% if contact.status %}
+                        <span class="text-success fw-semibold">Active</span>
+                        {% else %}
+                        <span class="text-danger fw-semibold">Inactive</span>
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div class="py-3 px-3 d-flex justify-content-between">
+                    <form method="post" action="{% url 'edit_contact' contact.id %}">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-primary btn-sm px-3">Edit</button>
+                    </form>
+                    <form method="post" action="{% url 'delete_contact' contact.id %}">
+                        {% csrf_token %}
+                        <button name="delete" type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

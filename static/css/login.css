@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(103deg, rgba(138, 79, 209, 1) 0%, rgba(25, 12, 89, 1) 50%, rgba(161, 51, 153, 1) 100%);
+}
+
+.login-container {
+    width: 100%;
+    max-width: 450px;
+    backdrop-filter: blur(25px);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    animation: fadeIn 0.8s ease-in-out;
+    padding: 40px 30px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.btn-custom {
+    background: linear-gradient(135deg, #8f5aff, #d64fff);
+    color: #fff;
+    border-radius: 14px;
+    font-size: 17px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+    padding: 12px;
+}
+
+.btn-custom:hover {
+    transform: scale(1.05);
+    background: transparent;
+    border: 1px solid white;
+}
+
+.links {
+    font-size: 15px;
+}
+
+.links a {
+    color: #c28bff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.links a:hover {
+    color: #fff;
+}
+
+.input-group-custom input {
+    width: 100%;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    padding: 12px;
+    transition: 0.3s;
+}
+
+.input-group-custom input:focus {
+    transform: scale(1.02);
+}
+
+.input-group-custom input::placeholder {
+    color: rgb(201, 201, 201);
+}
+
+label {
+    margin-bottom: 5px;
+    font-size: 15px;
+}
+
+@media (max-width: 400px) {
+    h2 {
+        font-size: 24px;
+    }
+
+    .login-container {
+        padding: 30px 20px;
+    }
+
+    .btn-custom {
+        font-size: 15px;
+    }
+}
