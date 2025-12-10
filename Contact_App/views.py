@@ -21,6 +21,8 @@ def login(request):
     return render(request,'loginpage.html')
 
 def registration(request):
+    if 'email' in request.session:
+        return redirect('home')
     if request.method == "POST":
         name = request.POST.get('name')
         email = request.POST.get('email')
