@@ -1,1 +1,1 @@
-web: gunicorn Contact_App.wsgi
+web: gunicorn Contact_Project.wsgi
