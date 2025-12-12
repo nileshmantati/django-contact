@@ -1,6 +1,9 @@
 from django.shortcuts import render ,redirect,get_object_or_404
 from django.contrib import messages
 from .models import Contact ,Registration
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render
+# from .models import Post
 
 # Create your views here.
 def login(request):
@@ -103,9 +106,21 @@ def contact(request):
     if 'email' not in request.session:
         return redirect('login')
     user = Registration.objects.get(email=request.session['email'])
-    alldata = Contact.objects.filter(user=user)
+    data = Contact.objects.filter(user=user)
+    paginator = Paginator(data, 2)
+    
+    page_number = request.GET.get('page')
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
+        
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
-        'alldata':alldata
+        'alldata':page_obj
     }
     return render(request, 'contactall.html',context)
 
