@@ -5,12 +5,24 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/register.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Cause:wght@100..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Heebo:wght@100..900&family=League+Spartan:wght@100..900&family=Londrina+Solid:wght@100;300;400;900&family=Lora:ital,wght@0,400..700;1,400..700&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Pacifico&family=Playwrite+AU+SA:wght@100..400&family=Playwrite+HU:wght@100..400&family=Prata&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+<style>
+    .login-title {
+        /* font-family: "Lora", serif; */
+        font-family: "Playwrite AU SA", cursive;
+        /* font-family: "Winky Rough", sans-serif; */
+        /* font-size: 28px; */
+        font-weight: 600;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
 <div class="d-flex justify-content-center align-items-center">
     <div class="register-card">
-        <h3 class="text-center mb-4">Create Account</h3>
+        <h3 class="text-center mb-4 login-title">Create Account</h3>
 
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
