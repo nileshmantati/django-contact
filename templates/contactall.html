@@ -9,7 +9,18 @@
 
 {% block content %}
 <div class="container p-3 my-3">
-    <h2 class="fw-medium mb-4">Contact Details</h2>
+    <div class="d-flex justify-content-between">
+        <h2 class="fw-medium mb-4">Contact Details</h2>
+        <div>
+            <form method="get" class="mb-4">
+                <div class="input-group">
+                    <input type="text" name="search" value="{{ search }}" class="form-control"
+                        placeholder="Search by name, email or phone">
+                    <button class="btn btn-outline-success">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
         {% for contact in alldata %}
         <div class="col">
@@ -17,7 +28,7 @@
                 <img src="{{ contact.image.url }}" class="card-img-top rounded-2" alt="Image">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <h5 class="card-title text-capitalize fw-bold">{{ contact.name }}</h5>
+                        <h5 class="card-title fw-bold">{{ contact.name }}</h5>
                         <span>
                             <form action="{% url 'update_status' contact.id %}" method="post">
                                 {% csrf_token %}
@@ -26,10 +37,6 @@
                                     <span class="slider"></span>
                                 </label>
                             </form>
-                            <!-- <form action="{% url 'update_status' contact.id%}" method="post">
-                                        {% csrf_token %}
-                                        <input type="checkbox" class="status_checkbox" onchange="this.form.submit()" {% if contact.status %} checked {% endif %}>
-                                    </form>-->
                         </span>
                     </div>
                     <p class="card-text mb-1" style="font-size: .9rem;">{{ contact.email }}</p>
@@ -66,11 +73,11 @@
         <div class="ms-3 d-flex align-items-center gap-2">
             <div>
                 {% if alldata.has_previous %}
-                <!-- <a href="?page=1">First</a> -->
-                <a href="?page={{ alldata.previous_page_number }}" class="btn btn-outline-dark">Previous</a>
+                <a href="?page={{ alldata.previous_page_number }}&search={{ search }}"
+                    class="btn btn-outline-dark">Previous</a>
                 {% endif %}
                 {% if alldata.has_next %}
-                <a href="?page={{ alldata.next_page_number }}" class="btn btn-outline-dark">Next</a>
+                <a href="?page={{ alldata.next_page_number }}&search={{ search }}" class="btn btn-outline-dark">Next</a>
                 <!-- <a href="?page={{ alldata.paginator.num_pages }}">Last</a> -->
                 {% endif %}
             </div>
@@ -79,7 +86,7 @@
                 {% if alldata.number == num %}
                 <button class="btn btn-secondary">{{ num }}</button>
                 {% else %}
-                <a href="?page={{ num }}" class=" btn btn-outline-dark">{{ num }}</a>
+                <a href="?page={{ num }}&search={{ search }}" class=" btn btn-outline-dark">{{ num }}</a>
                 {% endif %}
                 {% endfor %}
             </div>

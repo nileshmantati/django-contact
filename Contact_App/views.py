@@ -1,9 +1,10 @@
 from django.shortcuts import render ,redirect,get_object_or_404
 from django.contrib import messages
 from .models import Contact ,Registration
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
-# from .models import Post
+# For Pagination 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
 
 # Create your views here.
 def login(request):
@@ -101,28 +102,30 @@ def home(request,pk=None):
         "btn": "Update Contact" if pk else "Save Contact"
     })
 
-
 def contact(request):
     if 'email' not in request.session:
         return redirect('login')
+
     user = Registration.objects.get(email=request.session['email'])
+    search = request.GET.get('search','')
     data = Contact.objects.filter(user=user)
-    paginator = Paginator(data, 2)
     
-    page_number = request.GET.get('page')
-    try:
-        page_obj = paginator.get_page(page_number)
-    except PageNotAnInteger:
-        page_obj = paginator.page(1)
-    except EmptyPage:
-        page_obj = paginator.page(paginator.num_pages)
-        
+    if search:
+        data = data.filter(
+            Q(name__icontains=search) |
+            Q(email__icontains=search) |
+            Q(phone__icontains=search)
+        )
+    
+    paginator = Paginator(data, 4)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+
     context = {
-        'alldata':page_obj
+        'alldata': page_obj,
+        'search': search
     }
-    return render(request, 'contactall.html',context)
+    return render(request, 'contactall.html', context)
 
 def getsingledata(request,pk):
     data = get_object_or_404(Contact,pk=pk)
@@ -167,3 +170,25 @@ def logout(request):
     messages.success(request, "Logout Successfully!")
     request.session.flush()  # ye sare session ko delete kar deta hai
     return redirect('login')
+
+# def contact(request):
+#     if 'email' not in request.session:
+#         return redirect('login')
+#     user = Registration.objects.get(email=request.session['email'])
+#     data = Contact.objects.filter(user=user)
+#     paginator = Paginator(data, 2)
+    
+#     page_number = request.GET.get('page')
+#     try:
+#         page_obj = paginator.get_page(page_number)
+#     except PageNotAnInteger:
+#         page_obj = paginator.page(1)
+#     except EmptyPage:
+#         page_obj = paginator.page(paginator.num_pages)
+        
+#     page_number = request.GET.get('page')   
+#     page_obj = paginator.get_page(page_number)
+#     context = {
+#         'alldata':page_obj
+#     }
+#     return render(request, 'contactall.html',context)
