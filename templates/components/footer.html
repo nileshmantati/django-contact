@@ -1,18 +1,14 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <title>Document</title> -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+{% block title %}Contact Form{% endblock %}
 
-<body>
-    <footer>
-        <p>© 2025 My Website</p>
-    </footer>
-</body>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
 
-</html>
+{% block content %}
+<footer>
+    <p>© 2025 My Website</p>
+</footer>
+{% endblock %}
